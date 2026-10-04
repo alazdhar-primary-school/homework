@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مدرسة الازدهار الاهلية - جدول الواجبات اليومي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue-d:#0e1e3b;
+  --blue-primary:#162d59;
+  --blue-l:#24467d;
+  --gold:#d4af37;
+  --gold-d:#b89324;
+  --bg:#f3f6fa;
+  --card:#ffffff;
+  --red:#c0392b;
+  --red-hover:#a93226;
+  --border:#dbe3ec;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
+body{background:var(--bg);min-height:100vh}
+.hidden{display:none!important}
+
+/* ---------- LOGIN ---------- */
+#loginScreen{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  background:linear-gradient(160deg, var(--blue-d), var(--blue-primary) 55%, var(--blue-l));
+  padding:20px;
+}
+.login-card{
+  background:#fff;
+  border-radius:20px;
+  padding:40px 30px;
+  width:100%;
+  max-width:420px;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  text-align:center;
+}
+.login-card h1{color:var(--blue-d);font-size:25px;margin-bottom:6px}
+.login-card h2{color:var(--gold);font-size:19px;margin-bottom:25px}
+
+.logo-circle{
+  width:105px;
+  height:105px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  margin:0 auto 18px;
+  border:4px solid var(--gold);
+  background:#fff;
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+}
+
+input,select,textarea{
+  width:100%;
+  padding:12px 14px;
+  border:2px solid var(--border);
+  border-radius:10px;
+  font-size:15px;
+  margin-bottom:14px;
+  outline:none;
+  transition:.2s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--blue-primary)}
+button{cursor:pointer;border:none;border-radius:10px;font-weight:700;transition:.2s}
+.btn-main{background:var(--blue-primary);color:#fff;padding:13px;font-size:16px;width:100%}
+.btn-main:hover{background:var(--blue-d)}
+.btn-gold{background:var(--gold);color:#241d00;padding:10px 22px;font-size:15px}
+.btn-gold:hover{background:var(--gold-d)}
+.btn-red{background:var(--red);color:#fff;padding:8px 14px;font-size:13px}
+.btn-red:hover{background:var(--red-hover)}
+.btn-secondary{background:#e8effa;color:var(--blue-primary);padding:10px 20px;border:1.5px solid #cbd8e8;font-size:14px}
+.btn-secondary:hover{background:#d5e3f7}
+.btn-del{background:#fdecea;color:var(--red);border:1px solid #fadbd8;padding:6px 10px;border-radius:8px;font-size:14px}
+.btn-del:hover{background:var(--red);color:#fff}
+.btn-sm{padding:6px 12px;font-size:13px}
+.err{color:var(--red);font-size:14px;margin-top:8px;min-height:20px}
+
+/* ---------- HEADER ---------- */
+header{
+  background:var(--blue-d);
+  color:#fff;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  box-shadow:0 3px 14px rgba(0,0,0,.2);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+header .brand{display:flex;align-items:center;gap:12px}
+header .brand .logo-circle{width:52px;height:52px;margin:0;border-width:3px}
+header h1{font-size:20px}
+header .sub{color:var(--gold);font-size:14px}
+.user-chip{background:rgba(255,255,255,.12);padding:8px 14px;border-radius:30px;font-size:14px;display:flex;gap:10px;align-items:center}
+
+/* ---------- LAYOUT ---------- */
+main{max-width:1100px;margin:30px auto;padding:0 18px}
+.page-title{text-align:center;color:var(--blue-d);font-size:28px;margin-bottom:8px}
+.page-sub{text-align:center;color:#607289;margin-bottom:30px}
+
+/* ---------- GRID CARDS ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:30px 20px;
+  text-align:center;
+  box-shadow:0 4px 14px rgba(22,45,89,.08);
+  cursor:pointer;
+  transition:.25s;
+  border:2px solid transparent;
+}
+.card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 12px 28px rgba(22,45,89,.16)}
+.card .icon{font-size:40px;margin-bottom:10px}
+.card h3{color:var(--blue-d);font-size:21px}
+.card p{color:#76879d;font-size:14px;margin-top:6px}
+
+/* ---------- SECTION PICK ---------- */
+.sec-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.sec-btn{
+  width:130px;
+  height:130px;
+  border-radius:20px;
+  background:#fff;
+  border:3px solid var(--blue-primary);
+  color:var(--blue-d);
+  font-size:40px;
+  font-weight:900;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+}
+.sec-btn:hover{background:var(--blue-primary);color:#fff;transform:scale(1.05)}
+.back-link{color:var(--blue-primary);cursor:pointer;font-size:15px;margin-bottom:18px;display:inline-block;font-weight:700}
+
+/* ---------- SCHEDULE ---------- */
+.days-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:20px 0 24px}
+.day-btn{
+  padding:10px 18px;
+  border-radius:30px;
+  background:#fff;
+  border:2px solid var(--border);
+  color:var(--blue-d);
+  font-weight:700;
+  font-size:15px;
+}
+.day-btn.active{background:var(--blue-primary);color:#fff;border-color:var(--blue-primary)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.07)}
+th{background:var(--blue-primary);color:#fff;padding:14px 12px;font-size:15px}
+td{padding:12px 14px;border-bottom:1px solid #eef2f6;text-align:center;font-size:15px;vertical-align:middle}
+tr:nth-child(even) td{background:#f8fafd}
+
+.num-badge{
+  background:var(--gold);
+  color:#241d00;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:14px;
+}
+.subject-input{
+  width:100%;
+  font-weight:700;
+  color:var(--blue-d);
+  border:1.5px solid #dbe3ec;
+  border-radius:8px;
+  padding:8px 10px;
+  font-size:15px;
+  margin:0;
+  background:#fff;
+}
+.subject-input:focus{border-color:var(--blue-primary)}
+
+.hw-input{
+  width:100%;
+  min-height:58px;
+  height:58px;
+  padding:8px 12px;
+  font-size:14px;
+  line-height:1.5;
+  border:1.5px solid #dbe3ec;
+  border-radius:8px;
+  background:#fff;
+  resize:vertical;
+  margin:0;
+}
+.hw-input:focus{border-color:var(--blue-primary)}
+.hw-static{
+  text-align:right;
+  white-space:pre-wrap;
+  line-height:1.6;
+  font-size:14px;
+  padding:4px 6px;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+}
+
+.table-controls{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  align-items:center;
+  margin-top:22px;
+  flex-wrap:wrap;
+}
+.saved-msg{color:var(--blue-primary);font-weight:700;margin-top:10px;min-height:22px;text-align:center}
+
+/* ---------- ADMIN ---------- */
+.panel{background:#fff;border-radius:16px;padding:26px;box-shadow:0 4px 14px rgba(0,0,0,.08);margin-bottom:24px}
+.panel h3{color:var(--blue-d);margin-bottom:16px;font-size:20px;border-bottom:2px solid var(--gold);padding-bottom:8px;display:inline-block}
+table.admin-table td, table.admin-table th{padding:10px;font-size:14px}
+.badge{padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700}
+.badge.on{background:#e8f0fe;color:var(--blue-primary)}
+.badge.off{background:#fdecea;color:var(--red)}
+.form-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:start}
+@media(max-width:640px){.form-row{grid-template-columns:1fr}}
+footer{text-align:center;color:#7c8d9e;padding:26px;font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="loginScreen">
+  <div class="login-card">
+    <img src="image.jfif" alt="شعار مؤسسة الإزدهار" class="logo-circle" onerror="this.onerror=null;this.src='logo.png';">
+    <h1>مدرسة الازدهار الاهلية</h1>
+    <h2>جدول الواجبات اليومي</h2>
+    <input type="text" id="loginUser" placeholder="اسم المستخدم">
+    <input type="password" id="loginPass" placeholder="كلمة المرور">
+    <button class="btn-main" onclick="doLogin()">تسجيل الدخول</button>
+    <div class="err" id="loginErr"></div>
+    <button class="btn-secondary" style="width:100%;margin-top:6px" onclick="enterGuest()">👁️ عرض فقط (بدون تسجيل دخول)</button>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="app" class="hidden">
+<header>
+  <div class="brand">
+    <img src="image.jfif" alt="شعار مؤسسة الإزدهار" class="logo-circle" onerror="this.onerror=null;this.src='logo.png';">
+    <div>
+      <h1>مدرسة الازدهار الاهلية</h1>
+      <div class="sub">جدول الواجبات اليومي</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <div class="user-chip" id="userChip"></div>
+    <button class="btn-gold btn-sm" id="adminBtn" onclick="showAdminPanel()">⚙️ لوحة التحكم</button>
+    <button class="btn-red btn-sm" onclick="doLogout()">خروج</button>
+  </div>
+</header>
+<main id="mainContent"></main>
+<footer>مدرسة الازدهار الاهلية © ٢٠٢٦ — جميع الحقوق محفوظة</footer>
+</div>
+
+<script>
+/* ================= FIREBASE SETTINGS =================
+   Paste YOUR Firebase web-app settings below
+   (Firebase console → ⚙️ Project settings → General → Your apps → Web app → firebaseConfig).
+   Nothing else in this file needs to change.                                             */
+const firebaseConfig = {
+  apiKey: "AIzaSyCl_D_x9qi-cLIWivLqgAo2tr_e_y3fPrk",
+  authDomain: "alezdihar-homework.firebaseapp.com",
+  projectId: "alezdihar-homework",
+  storageBucket: "alezdihar-homework.firebasestorage.app",
+  messagingSenderId: "569820850027",
+  appId: "1:569820850027:web:1f9f4c6d8d2612e17a4e2e",
+  measurementId: "G-HLKJT4LD9X"
+};
+const FB_VERSION='12.19.0';        // Firebase SDK version (loaded from Google's CDN)
+const EMAIL_DOMAIN='azdhar.app';   // inside Firebase every username is stored as username@azdhar.app
+const ADMIN_USER='admin';          // main admin = admin@azdhar.app (created in Firebase → Authentication)
+
+/* ================= STORAGE (online, Firebase) ================= */
+const GRADES=['الصف الأول','الصف الثاني','الصف الثالث','الصف الرابع','الصف الخامس','الصف السادس'];
+const SECTIONS=['A','B','C'];
+const DAYS=['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس'];
+const SUBJECTS=['اللغة العربية','الرياضيات','العلوم','اللغة الإنجليزية','التربية الإسلامية','الاجتماعيات','الحاسوب والمهارات'];
+const MAX_USERS=40;
+const FRESH_MS=15000;   // a day opened again after 15 s is re-downloaded, so guests see new homework
+
+let db={users:[],sched:{}};   // working copy of what is stored online
+const baseSched={};           // last version known to be saved online (lets teachers' edits merge safely)
+const loadedAt={};
+
+function clone(x){return JSON.parse(JSON.stringify(x));}
+function newId(){return 'n'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function defaultRows(){return SUBJECTS.map((sub,i)=>({id:'d'+i,subject:sub,homework:''}));}
+function docIdFor(key){const p=key.split('|');return 'g'+GRADES.indexOf(p[0])+'_'+p[1]+'_d'+DAYS.indexOf(p[2]);}
+function isDirty(key){return JSON.stringify(db.sched[key])!==JSON.stringify(baseSched[key]);}
+function onKey(key){return view.page==='schedule'&&(GRADES[view.grade]+'|'+view.section+'|'+DAYS[view.day])===key;}
+function validUsername(u){return /^[a-z0-9._-]{3,30}$/.test(u);}
+function toEmail(u){return u+'@'+EMAIL_DOMAIN;}
+
+/* ---- Firebase loader (downloaded on first use) ---- */
+let fbPromise=null;
+function newAuth(authM,app){
+  try{return authM.initializeAuth(app,{persistence:authM.inMemoryPersistence});}   // nobody stays signed in after a reload
+  catch(e){return authM.getAuth(app);}
+}
+function loadFirebase(){
+  if(fbPromise)return fbPromise;
+  const p=(async()=>{
+    if(!firebaseConfig.apiKey||firebaseConfig.apiKey.indexOf('PASTE')===0)throw new Error('firebase-not-configured');
+    const base='https://www.gstatic.com/firebasejs/'+FB_VERSION+'/';
+    const [appM,authM,fs]=await Promise.all([
+      import(base+'firebase-app.js'),
+      import(base+'firebase-auth.js'),
+      import(base+'firebase-firestore.js')
+    ]);
+    const app=appM.getApps().length?appM.getApp():appM.initializeApp(firebaseConfig);
+    return {appM,authM,fs,app,auth:newAuth(authM,app),store:fs.getFirestore(app)};
+  })();
+  fbPromise=p;
+  p.catch(()=>{if(fbPromise===p)fbPromise=null;});   // allow a retry after a failure
+  return p;
+}
+async function secondaryAuth(){   // only used to create teacher accounts without signing the admin out
+  const f=await loadFirebase();
+  let app2;
+  try{app2=f.appM.getApp('secondary');}catch(e){app2=f.appM.initializeApp(firebaseConfig,'secondary');}
+  return newAuth(f.authM,app2);
+}
+
+function errText(e){
+  const c=(e&&e.code)||'',m=(e&&e.message)||'';
+  if(m==='firebase-not-configured')return 'لم يتم ربط قاعدة البيانات بعد — أضف إعدادات Firebase داخل الملف';
+  if(c==='permission-denied')return 'ليس لديك صلاحية لتنفيذ هذا الإجراء (قد يكون الحساب موقوفاً)';
+  if(c==='unavailable'||c==='auth/network-request-failed'||/Failed to fetch|Importing a module|error loading|NetworkError|Load failed|client is offline/i.test(m))return 'تعذّر الاتصال بالإنترنت أو بقاعدة البيانات. حاول مرة أخرى';
+  if(c==='auth/too-many-requests')return 'محاولات كثيرة. انتظر قليلاً ثم حاول مرة أخرى';
+  if(c==='auth/email-already-in-use')return 'اسم المستخدم مستخدم سابقاً. اختر اسماً آخر';
+  if(c==='auth/weak-password')return 'كلمة المرور ضعيفة (6 أحرف على الأقل)';
+  if(c==='auth/requires-recent-login')return 'لأسباب أمنية: سجّل الخروج ثم الدخول من جديد ثم أعد المحاولة';
+  if(c==='auth/user-disabled')return 'هذا الحساب موقوف. تواصل مع المدير العام';
+  if(c==='auth/operation-not-allowed'||c==='auth/configuration-not-found')return 'تسجيل الدخول بالبريد وكلمة المرور غير مفعّل في Firebase';
+  if(c==='auth/invalid-api-key'||c.indexOf('auth/api-key-not-valid')===0)return 'مفتاح Firebase غير صحيح — تحقق من firebaseConfig';
+  if(/^auth\/(invalid-credential|user-not-found|wrong-password|invalid-email|invalid-login-credentials)$/.test(c))return 'اسم المستخدم أو كلمة المرور غير صحيحة';
+  console.error(e);
+  return 'حدث خطأ غير متوقع'+(c?' ('+c+')':'');
+}
+
+/* ---- merging: lets several teachers edit the same class/day without overwriting each other ----
+   base = what I last loaded/saved, local = my copy now, server = what is online right now.   */
+function mergeRows(base,local,server){
+  const L=new Map(local.map(r=>[r.id,r])),B=new Map(base.map(r=>[r.id,r]));
+  const out=server.map(r=>({id:r.id,subject:r.subject,homework:r.homework}))
+                  .filter(r=>!(B.has(r.id)&&!L.has(r.id)));            // rows I deleted
+  local.forEach(l=>{
+    const b=B.get(l.id),t=out.find(r=>r.id===l.id);
+    if(!b){if(!t)out.push({id:l.id,subject:l.subject,homework:l.homework});return;}   // row I added
+    const changed=['subject','homework'].filter(f=>l[f]!==b[f]);                       // fields I edited
+    if(!changed.length)return;
+    if(t)changed.forEach(f=>{t[f]=l[f];});
+    else out.push({id:l.id,subject:l.subject,homework:l.homework});   // someone deleted it while I edited: keep my work
+  });
+  return out;
+}
+
+async function loadDay(key){
+  const f=await loadFirebase();
+  const snap=await f.fs.getDoc(f.fs.doc(f.store,'schedule',docIdFor(key)));
+  const rows=snap.exists()?(snap.data().rows||[]):defaultRows();
+  db.sched[key]=clone(rows);baseSched[key]=clone(rows);loadedAt[key]=Date.now();
+}
+
+async function saveDay(key){
+  if(!currentUser)throw {code:'permission-denied'};
+  const f=await loadFirebase();
+  const snapshot=clone(db.sched[key]),base=clone(baseSched[key]||[]);
+  const ref=f.fs.doc(f.store,'schedule',docIdFor(key));
+  const saved=await f.fs.runTransaction(f.store,async tx=>{
+    const snap=await tx.get(ref);
+    const server=snap.exists()?(snap.data().rows||[]):defaultRows();
+    const merged=mergeRows(base,snapshot,server);
+    tx.set(ref,{rows:merged,updatedAt:f.fs.serverTimestamp(),updatedBy:currentUser.u});
+    return merged;
+  });
+  const current=db.sched[key];                         // may have changed while saving
+  const next=mergeRows(snapshot,current,saved);
+  db.sched[key]=next;baseSched[key]=clone(saved);loadedAt[key]=Date.now();
+  if(onKey(key)&&JSON.stringify(next)!==JSON.stringify(current))renderSchedule();
+}
+
+let currentUser=null, view={page:'grades',grade:null,section:null,day:0};
+
+/* ================= AUTH ================= */
+let loginBusy=false;
+async function doLogin(){
+  if(loginBusy)return;
+  const u=document.getElementById('loginUser').value.trim().toLowerCase();
+  const p=document.getElementById('loginPass').value;
+  const err=document.getElementById('loginErr');
+  const btn=document.querySelector('#loginScreen .btn-main');
+  err.textContent='';
+  if(!u||!p){err.textContent='اسم المستخدم أو كلمة المرور غير صحيحة';return;}
+  loginBusy=true;btn.disabled=true;btn.textContent='جاري تسجيل الدخول...';
+  try{
+    const f=await loadFirebase();
+    const cred=await f.authM.signInWithEmailAndPassword(f.auth,toEmail(u),p);
+    const uid=cred.user.uid;
+    const ref=f.fs.doc(f.store,'users',uid);
+    const snap=await f.fs.getDoc(ref);
+    let prof;
+    if(snap.exists())prof=snap.data();
+    else if(u===ADMIN_USER){                       // very first admin login: create the admin profile
+      prof={u:ADMIN_USER,name:'المدير العام',role:'super',active:true};
+      await f.fs.setDoc(ref,prof);
+    }else{
+      await f.authM.signOut(f.auth);
+      err.textContent='هذا الحساب غير مفعّل. تواصل مع المدير العام';return;
+    }
+    if(!prof.active){
+      await f.authM.signOut(f.auth);
+      err.textContent='هذا الحساب موقوف. تواصل مع المدير العام';return;
+    }
+    currentUser={uid,u:prof.u,name:prof.name,role:prof.role,active:prof.active};
+    document.getElementById('loginPass').value='';
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+    document.getElementById('userChip').textContent='👤 '+currentUser.name+' ('+(currentUser.role==='super'?'مدير عام':'معلم')+')';
+    document.getElementById('adminBtn').style.display=currentUser.role==='super'?'':'none';
+    view={page:'grades',grade:null,section:null,day:0};
+    render();
+  }catch(e){
+    err.textContent=errText(e);
+  }finally{
+    loginBusy=false;btn.disabled=false;btn.textContent='تسجيل الدخول';
+  }
+}
+function enterGuest(){
+  currentUser=null;
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginErr').textContent='';
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  document.getElementById('userChip').textContent='👁️ وضع العرض فقط';
+  document.getElementById('adminBtn').style.display='none';
+  view={page:'grades',grade:null,section:null,day:0};
+  render();
+}
+function doLogout(){location.reload();}
+document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+/* ================= NAV / RENDER ================= */
+const main=document.getElementById('mainContent');
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
+
+function render(){
+  if(view.page==='grades')renderGrades();
+  else if(view.page==='sections')renderSections();
+  else if(view.page==='schedule')renderSchedule();
+  else if(view.page==='admin')renderAdmin();
+  window.scrollTo(0,0);
+}
+
+function renderGrades(){
+  let h=`<h2 class="page-title">جدول الواجبات اليومي</h2>
+  <p class="page-sub">اختر الصف الدراسي لعرض الواجبات</p><div class="grid">`;
+  GRADES.forEach((g,i)=>{
+    h+=`<div class="card" onclick="openGrade(${i})">
+      <div class="icon">📚</div><h3>${g}</h3><p>الشُعب: A · B · C</p></div>`;
+  });
+  main.innerHTML=h+'</div>';
+}
+function openGrade(i){view={page:'sections',grade:i,section:null,day:0};render();}
+function openSection(s){view.page='schedule';view.section=s;render();}
+
+function renderSections(){
+  main.innerHTML=`
+  <span class="back-link" onclick="view={page:'grades'};render()">→ رجوع للصفوف</span>
+  <h2 class="page-title">${GRADES[view.grade]}</h2>
+  <p class="page-sub">اختر الشعبة</p>
+  <div class="sec-row">
+    ${SECTIONS.map(s=>`<button class="sec-btn" onclick="openSection('${s}')">${s}</button>`).join('')}
+  </div>`;
+}
+
+function scheduleHead(g,s){
+  return `
+  <span class="back-link" onclick="view.page='sections';render()">→ رجوع لشُعب ${g}</span>
+  <h2 class="page-title">${g} — شعبة ${s}</h2>
+  <div class="days-bar">${DAYS.map((dd,i)=>`<button class="day-btn ${i===view.day?'active':''}" onclick="view.day=${i};render()">${dd}</button>`).join('')}</div>`;
+}
+function needsLoad(key){
+  if(!db.sched[key])return true;
+  return !isDirty(key)&&Date.now()-(loadedAt[key]||0)>FRESH_MS;   // never overwrite unsaved edits
+}
+function showDay(key,g,s){
+  main.innerHTML=scheduleHead(g,s)+`<p class="page-sub">جاري تحميل الواجبات...</p>`;
+  loadDay(key).then(()=>{
+    if(onKey(key))renderSchedule();
+  }).catch(e=>{
+    if(!onKey(key))return;
+    main.innerHTML=scheduleHead(g,s)+`<div class="err" style="text-align:center;font-size:15px;margin:20px 0">${esc(errText(e))}</div>
+    <div style="text-align:center"><button class="btn-secondary" onclick="renderSchedule()">🔄 إعادة المحاولة</button></div>`;
+  });
+}
+
+function renderSchedule(){
+  const g=GRADES[view.grade],s=view.section,d=DAYS[view.day];
+  const key=g+'|'+s+'|'+d;
+  if(needsLoad(key)){showDay(key,g,s);return;}
+  const rows=db.sched[key];
+  const canEdit=Boolean(currentUser);
+
+  let h=scheduleHead(g,s);
+
+  h+=`<table>
+    <thead>
+      <tr>
+        <th style="width:70px">الحصة</th>
+        <th style="width:200px">المادة</th>
+        <th>الواجب اليومي</th>
+        ${canEdit?`<th style="width:75px">حذف</th>`:''}
+      </tr>
+    </thead>
+    <tbody>`;
+
+  if(rows.length===0){
+    h+=`<tr><td colspan="${canEdit?4:3}" style="padding:26px;color:#8596a6">لا توجد مواد مضافة لهذا اليوم. يمكنك إضافة مادة جديدة بالزر أدناه.</td></tr>`;
+  } else {
+    rows.forEach((r,i)=>{
+      h+=`<tr>
+        <td><span class="num-badge">${i+1}</span></td>
+        <td>
+          ${canEdit?`<input class="subject-input" value="${esc(r.subject)}" placeholder="اسم المادة" onchange="updateRow('${key}',${i},'subject',this.value)">`:`<b>${esc(r.subject)}</b>`}
+        </td>
+        <td>
+          ${canEdit?`<textarea class="hw-input" rows="2" placeholder="اكتب تفاصيل الواجب اليومي هنا..." onchange="updateRow('${key}',${i},'homework',this.value)">${esc(r.homework)}</textarea>`:
+          `<div class="hw-static">${esc(r.homework)||'<span style="color:#a8b6c4">لا يوجد واجب</span>'}</div>`}
+        </td>
+        ${canEdit?`<td><button class="btn-del" title="حذف المادة" onclick="deleteSubject('${key}',${i})">🗑️</button></td>`:''}
+      </tr>`;
+    });
+  }
+
+  h+=`</tbody></table>`;
+
+  if(canEdit){
+    h+=`
+    <div class="table-controls">
+      <button class="btn-secondary" onclick="addSubject('${key}')">➕ إضافة مادة</button>
+      <button class="btn-main" style="width:auto;padding:10px 36px" onclick="saveAll()">💾 حفظ الواجبات</button>
+    </div>
+    <div class="saved-msg" id="savedMsg"></div>`;
+  }
+
+  main.innerHTML=h;
+}
+
+function updateRow(key,i,field,val){
+  if(db.sched[key]&&db.sched[key][i]){
+    db.sched[key][i][field]=val;
+  }
+}
+
+function showSavedMsg(text,isErr){
+  const m=document.getElementById('savedMsg');
+  if(!m)return;
+  m.style.color=isErr?'var(--red)':'';
+  m.textContent=text;
+  if(!isErr)setTimeout(()=>{if(m.textContent===text)m.textContent='';},2500);
+}
+async function trySave(key){
+  try{await saveDay(key);return true;}
+  catch(e){showSavedMsg('❌ '+errText(e),true);return false;}
+}
+
+async function addSubject(key){
+  if(!db.sched[key])db.sched[key]=[];
+  db.sched[key].push({id:newId(),subject:'مادة جديدة',homework:''});
+  renderSchedule();
+  await trySave(key);
+}
+
+async function deleteSubject(key,i){
+  if(confirm('هل أنت متأكد من حذف هذه المادة؟')){
+    db.sched[key].splice(i,1);
+    renderSchedule();
+    await trySave(key);
+  }
+}
+
+async function saveAll(){
+  let ok=true;
+  for(const k of Object.keys(db.sched).filter(isDirty)){      // this day + any day edited earlier in this visit
+    if(!(await trySave(k)))ok=false;
+  }
+  if(ok)showSavedMsg('✅ تم حفظ التغييرات والواجبات بنجاح',false);
+}
+
+/* ================= ADMIN (SUPER ONLY) ================= */
+async function refreshUsers(){
+  const f=await loadFirebase();
+  const snap=await f.fs.getDocs(f.fs.collection(f.store,'users'));
+  db.users=snap.docs.map(d=>Object.assign({uid:d.id},d.data()));
+  db.users.sort((a,b)=>(b.role==='super')-(a.role==='super')||String(a.u).localeCompare(String(b.u)));
+}
+async function showAdminPanel(){
+  if(!currentUser||currentUser.role!=='super')return;
+  try{await refreshUsers();}catch(e){alert(errText(e));return;}
+  view.page='admin';render();
+}
+function renderAdmin(){
+  const active=db.users.filter(u=>u.active).length;
+  let h=`<span class="back-link" onclick="view={page:'grades',grade:null,section:null,day:0};render()">→ رجوع للرئيسية</span>
+  <h2 class="page-title">⚙️ لوحة تحكم المدير العام</h2>
+  <p class="page-sub">المستخدمون المسجلون: ${db.users.length} / ${MAX_USERS} — الحسابات النشطة: ${active}</p>
+  <div class="panel">
+    <h3>➕ إضافة مستخدم جديد (معلم)</h3>`;
+  if(db.users.length>=MAX_USERS){h+=`<p style="color:var(--red)">تم بلوغ الحد الأقصى (${MAX_USERS} مستخدم).</p>`;}
+  else{
+    h+=`<div class="form-row">
+      <input id="nu_name" placeholder="الاسم الكامل">
+      <input id="nu_u" placeholder="اسم المستخدم (بالإنجليزية)">
+      <input id="nu_p" placeholder="كلمة المرور (6 أحرف على الأقل)">
+      <button class="btn-main" style="width:auto;padding:10px 24px" onclick="addUser()">إضافة</button>
+    </div><div class="err" id="addErr"></div>`;
+  }
+  h+=`</div><div class="panel"><h3>👥 المستخدمون</h3>
+  <table class="admin-table"><tr><th>الاسم</th><th>اسم المستخدم</th><th>الدور</th><th>الحالة</th><th>إجراءات</th></tr>`;
+  db.users.forEach((u,i)=>{
+    h+=`<tr>
+      <td>${esc(u.name)}</td><td>${esc(u.u)}</td>
+      <td>${u.role==='super'?'👑 مدير عام':'🧑‍🏫 معلم'}</td>
+      <td><span class="badge ${u.active?'on':'off'}">${u.active?'نشط':'موقوف'}</span></td>
+      <td>${u.role==='super'?'—':`
+        <button class="btn-blue btn-sm" onclick="toggleUser(${i})">${u.active?'إيقاف':'تفعيل'}</button>
+        <button class="btn-red btn-sm" onclick="delUser(${i})">حذف</button>`}</td>
+    </tr>`;
+  });
+  h+=`</table></div>
+  <div class="panel"><h3>🔑 تغيير كلمة مرور المدير العام</h3>
+    <div class="form-row">
+      <input id="np1" type="password" placeholder="كلمة المرور الجديدة">
+      <input id="np2" type="password" placeholder="تأكيد كلمة المرور">
+      <span></span><button class="btn-main" style="width:auto;padding:10px 24px" onclick="changePass()">تغيير</button>
+    </div><div class="err" id="passMsg"></div>
+  </div>`;
+  main.innerHTML=h;
+}
+let addingUser=false;
+async function addUser(){
+  if(addingUser)return;
+  const name=document.getElementById('nu_name').value.trim();
+  const u=document.getElementById('nu_u').value.trim().toLowerCase();
+  const p=document.getElementById('nu_p').value.trim();
+  const err=document.getElementById('addErr');
+  if(!name||!u||!p){err.textContent='يرجى تعبئة جميع الحقول';return;}
+  if(!validUsername(u)){err.textContent='اسم المستخدم: من 3 إلى 30 حرفاً إنجليزياً أو أرقاماً (يُسمح بـ . _ -)';return;}
+  if(p.length<6){err.textContent='كلمة المرور قصيرة (6 أحرف على الأقل)';return;}
+  if(db.users.some(x=>x.u===u)){err.textContent='اسم المستخدم موجود مسبقاً';return;}
+  addingUser=true;err.textContent='';
+  try{
+    const f=await loadFirebase();
+    const a2=await secondaryAuth();
+    const cred=await f.authM.createUserWithEmailAndPassword(a2,toEmail(u),p);
+    await f.authM.signOut(a2);
+    await f.fs.setDoc(f.fs.doc(f.store,'users',cred.user.uid),{u,name,role:'teacher',active:true});
+    await refreshUsers();render();
+  }catch(e){
+    err.textContent=errText(e);
+  }finally{addingUser=false;}
+}
+async function toggleUser(i){
+  const u=db.users[i];if(!u)return;
+  try{
+    const f=await loadFirebase();
+    await f.fs.updateDoc(f.fs.doc(f.store,'users',u.uid),{active:!u.active});
+    await refreshUsers();render();
+  }catch(e){alert(errText(e));}
+}
+async function delUser(i){
+  const u=db.users[i];if(!u)return;
+  if(confirm('حذف المستخدم "'+u.name+'"؟')){
+    try{
+      const f=await loadFirebase();
+      await f.fs.deleteDoc(f.fs.doc(f.store,'users',u.uid));
+      await refreshUsers();render();
+    }catch(e){alert(errText(e));}
+  }
+}
+async function changePass(){
+  const a=document.getElementById('np1').value,b=document.getElementById('np2').value,m=document.getElementById('passMsg');
+  m.style.color='';
+  if(a.length<6){m.textContent='كلمة المرور قصيرة (6 أحرف على الأقل)';return;}
+  if(a!==b){m.textContent='كلمتا المرور غير متطابقتين';return;}
+  try{
+    const f=await loadFirebase();
+    await f.authM.updatePassword(f.auth.currentUser,a);
+    m.style.color='var(--blue-primary)';m.textContent='✅ تم تغيير كلمة المرور';
+  }catch(e){
+    m.textContent=errText(e);
+  }
+}
+loadFirebase().catch(e=>console.warn('Firebase:',e&&e.message));   // start downloading Firebase in the background
+
+</script>
+</body>
+</html>
