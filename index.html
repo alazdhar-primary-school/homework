@@ -19,7 +19,7 @@
   --border:#dbe3ec;
 }
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
-body{background:var(--bg);min-height:100vh}
+body{background:var(--bg);min-height:100vh;overflow-x:hidden}
 .hidden{display:none!important}
 
 /* ---------- LOGIN ---------- */
@@ -35,22 +35,22 @@ body{background:var(--bg);min-height:100vh}
 .login-card{
   background:#fff;
   border-radius:20px;
-  padding:40px 30px;
+  padding:36px 24px;
   width:100%;
-  max-width:420px;
+  max-width:400px;
   box-shadow:0 20px 60px rgba(0,0,0,.3);
   text-align:center;
 }
-.login-card h1{color:var(--blue-d);font-size:25px;margin-bottom:6px}
-.login-card h2{color:var(--gold);font-size:19px;margin-bottom:25px}
+.login-card h1{color:var(--blue-d);font-size:22px;margin-bottom:6px}
+.login-card h2{color:var(--gold);font-size:17px;margin-bottom:22px}
 
 .logo-circle{
-  width:105px;
-  height:105px;
+  width:95px;
+  height:95px;
   border-radius:50%;
   object-fit:cover;
   display:block;
-  margin:0 auto 18px;
+  margin:0 auto 16px;
   border:4px solid var(--gold);
   background:#fff;
   box-shadow:0 6px 16px rgba(0,0,0,.15);
@@ -67,117 +67,146 @@ input,select,textarea{
   transition:.2s;
 }
 input:focus,select:focus,textarea:focus{border-color:var(--blue-primary)}
-button{cursor:pointer;border:none;border-radius:10px;font-weight:700;transition:.2s}
-.btn-main{background:var(--blue-primary);color:#fff;padding:13px;font-size:16px;width:100%}
+button{cursor:pointer;border:none;border-radius:10px;font-weight:700;transition:.2s;touch-action:manipulation}
+.btn-main{background:var(--blue-primary);color:#fff;padding:12px;font-size:15px;width:100%}
 .btn-main:hover{background:var(--blue-d)}
-.btn-gold{background:var(--gold);color:#241d00;padding:10px 22px;font-size:15px}
+.btn-gold{background:var(--gold);color:#241d00;padding:8px 16px;font-size:14px}
 .btn-gold:hover{background:var(--gold-d)}
 .btn-red{background:var(--red);color:#fff;padding:8px 14px;font-size:13px}
 .btn-red:hover{background:var(--red-hover)}
-.btn-secondary{background:#e8effa;color:var(--blue-primary);padding:10px 20px;border:1.5px solid #cbd8e8;font-size:14px}
+.btn-secondary{background:#e8effa;color:var(--blue-primary);padding:10px 18px;border:1.5px solid #cbd8e8;font-size:14px}
 .btn-secondary:hover{background:#d5e3f7}
-.btn-del{background:#fdecea;color:var(--red);border:1px solid #fadbd8;padding:6px 10px;border-radius:8px;font-size:14px}
+.btn-del{background:#fdecea;color:var(--red);border:1px solid #fadbd8;padding:8px 12px;border-radius:8px;font-size:15px}
 .btn-del:hover{background:var(--red);color:#fff}
-.btn-sm{padding:6px 12px;font-size:13px}
+.btn-sm{padding:7px 12px;font-size:13px}
 .err{color:var(--red);font-size:14px;margin-top:8px;min-height:20px}
 
 /* ---------- HEADER ---------- */
 header{
   background:var(--blue-d);
   color:#fff;
-  padding:14px 24px;
+  padding:12px 16px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   flex-wrap:wrap;
-  gap:10px;
+  gap:12px;
   box-shadow:0 3px 14px rgba(0,0,0,.2);
   position:sticky;
   top:0;
   z-index:50;
 }
-header .brand{display:flex;align-items:center;gap:12px}
-header .brand .logo-circle{width:52px;height:52px;margin:0;border-width:3px}
-header h1{font-size:20px}
-header .sub{color:var(--gold);font-size:14px}
-.user-chip{background:rgba(255,255,255,.12);padding:8px 14px;border-radius:30px;font-size:14px;display:flex;gap:10px;align-items:center}
+header .brand{display:flex;align-items:center;gap:10px}
+header .brand .logo-circle{width:46px;height:46px;margin:0;border-width:2.5px}
+header h1{font-size:18px;line-height:1.2}
+header .sub{color:var(--gold);font-size:13px}
+.header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.user-chip{background:rgba(255,255,255,.12);padding:6px 12px;border-radius:30px;font-size:13px;display:flex;gap:8px;align-items:center}
 
 /* ---------- LAYOUT ---------- */
-main{max-width:1100px;margin:30px auto;padding:0 18px}
-.page-title{text-align:center;color:var(--blue-d);font-size:28px;margin-bottom:8px}
-.page-sub{text-align:center;color:#607289;margin-bottom:30px}
+main{max-width:1100px;margin:20px auto;padding:0 12px}
+.page-title{text-align:center;color:var(--blue-d);font-size:24px;margin-bottom:6px}
+.page-sub{text-align:center;color:#607289;font-size:14px;margin-bottom:20px}
 
 /* ---------- GRID CARDS ---------- */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 .card{
   background:var(--card);
   border-radius:16px;
-  padding:30px 20px;
+  padding:24px 16px;
   text-align:center;
   box-shadow:0 4px 14px rgba(22,45,89,.08);
   cursor:pointer;
   transition:.25s;
   border:2px solid transparent;
 }
-.card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 12px 28px rgba(22,45,89,.16)}
-.card .icon{font-size:40px;margin-bottom:10px}
-.card h3{color:var(--blue-d);font-size:21px}
-.card p{color:#76879d;font-size:14px;margin-top:6px}
+.card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 10px 22px rgba(22,45,89,.14)}
+.card .icon{font-size:36px;margin-bottom:8px}
+.card h3{color:var(--blue-d);font-size:19px}
+.card p{color:#76879d;font-size:13px;margin-top:4px}
 
 /* ---------- SECTION PICK ---------- */
-.sec-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.sec-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:10px}
 .sec-btn{
-  width:130px;
-  height:130px;
-  border-radius:20px;
+  width:105px;
+  height:105px;
+  border-radius:18px;
   background:#fff;
   border:3px solid var(--blue-primary);
   color:var(--blue-d);
-  font-size:40px;
+  font-size:34px;
   font-weight:900;
   box-shadow:0 6px 16px rgba(0,0,0,.08);
 }
 .sec-btn:hover{background:var(--blue-primary);color:#fff;transform:scale(1.05)}
-.back-link{color:var(--blue-primary);cursor:pointer;font-size:15px;margin-bottom:18px;display:inline-block;font-weight:700}
+.back-link{color:var(--blue-primary);cursor:pointer;font-size:14px;margin-bottom:14px;display:inline-block;font-weight:700}
 
 /* ---------- SCHEDULE ---------- */
-.days-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:20px 0 24px}
+.days-bar{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:14px 0 20px}
 .day-btn{
-  padding:10px 18px;
-  border-radius:30px;
+  padding:8px 14px;
+  border-radius:24px;
   background:#fff;
-  border:2px solid var(--border);
+  border:1.5px solid var(--border);
   color:var(--blue-d);
   font-weight:700;
-  font-size:15px;
+  font-size:14px;
 }
 .day-btn.active{background:var(--blue-primary);color:#fff;border-color:var(--blue-primary)}
 
-table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.07)}
-th{background:var(--blue-primary);color:#fff;padding:14px 12px;font-size:15px}
-td{padding:12px 14px;border-bottom:1px solid #eef2f6;text-align:center;font-size:15px;vertical-align:middle}
+/* MOBILE-FRIENDLY TABLE WRAPPER */
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 4px 16px rgba(0,0,0,.07);
+  margin-bottom:16px;
+  border:1px solid #e2e8f0;
+}
+.table-hint{
+  display:none;
+  text-align:center;
+  font-size:12px;
+  color:#76879d;
+  margin-bottom:8px;
+}
+@media(max-width:768px){
+  .table-hint{display:block}
+}
+
+table{
+  width:100%;
+  min-width:640px; /* guarantees homework column never gets crushed */
+  border-collapse:collapse;
+  background:#fff;
+}
+th{background:var(--blue-primary);color:#fff;padding:12px 10px;font-size:14px;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid #eef2f6;text-align:center;font-size:14px;vertical-align:middle}
 tr:nth-child(even) td{background:#f8fafd}
 
 .num-badge{
   background:var(--gold);
   color:#241d00;
-  width:30px;
-  height:30px;
+  width:28px;
+  height:28px;
   border-radius:50%;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   font-weight:900;
-  font-size:14px;
+  font-size:13px;
 }
 .subject-input{
   width:100%;
+  min-width:130px;
   font-weight:700;
   color:var(--blue-d);
   border:1.5px solid #dbe3ec;
   border-radius:8px;
   padding:8px 10px;
-  font-size:15px;
+  font-size:14px;
   margin:0;
   background:#fff;
 }
@@ -185,9 +214,10 @@ tr:nth-child(even) td{background:#f8fafd}
 
 .hw-input{
   width:100%;
-  min-height:58px;
-  height:58px;
-  padding:8px 12px;
+  min-width:280px; /* gives the homework box plenty of width */
+  min-height:60px;
+  height:60px;
+  padding:8px 10px;
   font-size:14px;
   line-height:1.5;
   border:1.5px solid #dbe3ec;
@@ -204,30 +234,61 @@ tr:nth-child(even) td{background:#f8fafd}
   font-size:14px;
   padding:4px 6px;
   min-height:48px;
+  min-width:260px;
   display:flex;
   align-items:center;
 }
 
 .table-controls{
   display:flex;
-  gap:12px;
+  gap:10px;
   justify-content:center;
   align-items:center;
-  margin-top:22px;
+  margin-top:16px;
   flex-wrap:wrap;
 }
 .saved-msg{color:var(--blue-primary);font-weight:700;margin-top:10px;min-height:22px;text-align:center}
 
 /* ---------- ADMIN ---------- */
-.panel{background:#fff;border-radius:16px;padding:26px;box-shadow:0 4px 14px rgba(0,0,0,.08);margin-bottom:24px}
-.panel h3{color:var(--blue-d);margin-bottom:16px;font-size:20px;border-bottom:2px solid var(--gold);padding-bottom:8px;display:inline-block}
-table.admin-table td, table.admin-table th{padding:10px;font-size:14px}
-.badge{padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700}
+.panel{background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 14px rgba(0,0,0,.08);margin-bottom:20px}
+.panel h3{color:var(--blue-d);margin-bottom:14px;font-size:18px;border-bottom:2px solid var(--gold);padding-bottom:6px;display:inline-block}
+table.admin-table{min-width:540px}
+table.admin-table td, table.admin-table th{padding:8px 10px;font-size:13px}
+.badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
 .badge.on{background:#e8f0fe;color:var(--blue-primary)}
 .badge.off{background:#fdecea;color:var(--red)}
-.form-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:start}
-@media(max-width:640px){.form-row{grid-template-columns:1fr}}
-footer{text-align:center;color:#7c8d9e;padding:26px;font-size:13px}
+.form-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:start}
+@media(max-width:700px){
+  .form-row{grid-template-columns:1fr}
+  .form-row button{width:100%!important}
+}
+footer{text-align:center;color:#7c8d9e;padding:20px 10px;font-size:12px}
+/* ---------- MOBILE PATCH ---------- */
+html{-webkit-text-size-adjust:100%}
+input,select,textarea{font-size:16px}
+.btn-blue{background:var(--blue-primary);color:#fff;padding:7px 12px;font-size:13px}
+@media(max-width:700px){
+  header{position:static;padding:10px 12px}
+  header h1{font-size:16px}
+  .header-actions{width:100%}
+  .user-chip{flex:1;justify-content:center}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .days-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .day-btn{padding:10px 4px;font-size:15px}
+  .sched-wrap{overflow:visible;background:none;border:0;box-shadow:none}
+  table.sched,table.sched tbody{display:block;min-width:0;background:none}
+  table.sched thead{display:none}
+  table.sched tr{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"n s d" "h h h";gap:10px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:12px}
+  table.sched td{display:block;padding:0;border:0;background:none!important;text-align:right}
+  table.sched td:nth-child(1){grid-area:n}
+  table.sched td:nth-child(2){grid-area:s}
+  table.sched td:nth-child(3){grid-area:h}
+  table.sched td:nth-child(4){grid-area:d}
+  table.sched td[colspan]{grid-area:auto;grid-column:1/-1;text-align:center}
+  .subject-input,.hw-input{font-size:16px;min-width:0}
+  .hw-input{min-height:96px}
+  .hw-static{min-width:0;border-top:1px dashed var(--border);padding-top:10px;font-size:16px}
+}
 </style>
 </head>
 <body>
@@ -256,7 +317,7 @@ footer{text-align:center;color:#7c8d9e;padding:26px;font-size:13px}
       <div class="sub">جدول الواجبات اليومي</div>
     </div>
   </div>
-  <div style="display:flex;gap:10px;align-items:center">
+  <div class="header-actions">
     <div class="user-chip" id="userChip"></div>
     <button class="btn-gold btn-sm" id="adminBtn" onclick="showAdminPanel()">⚙️ لوحة التحكم</button>
     <button class="btn-red btn-sm" onclick="doLogout()">خروج</button>
@@ -290,10 +351,10 @@ const SECTIONS=['A','B','C'];
 const DAYS=['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس'];
 const SUBJECTS=['اللغة العربية','الرياضيات','العلوم','اللغة الإنجليزية','التربية الإسلامية','الاجتماعيات','الحاسوب والمهارات'];
 const MAX_USERS=40;
-const FRESH_MS=15000;   // a day opened again after 15 s is re-downloaded, so guests see new homework
+const FRESH_MS=15000;
 
-let db={users:[],sched:{}};   // working copy of what is stored online
-const baseSched={};           // last version known to be saved online (lets teachers' edits merge safely)
+let db={users:[],sched:{}};
+const baseSched={};
 const loadedAt={};
 
 function clone(x){return JSON.parse(JSON.stringify(x));}
@@ -305,10 +366,10 @@ function onKey(key){return view.page==='schedule'&&(GRADES[view.grade]+'|'+view.
 function validUsername(u){return /^[a-z0-9._-]{3,30}$/.test(u);}
 function toEmail(u){return u+'@'+EMAIL_DOMAIN;}
 
-/* ---- Firebase loader (downloaded on first use) ---- */
+/* ---- Firebase loader ---- */
 let fbPromise=null;
 function newAuth(authM,app){
-  try{return authM.initializeAuth(app,{persistence:authM.inMemoryPersistence});}   // nobody stays signed in after a reload
+  try{return authM.initializeAuth(app,{persistence:authM.inMemoryPersistence});}
   catch(e){return authM.getAuth(app);}
 }
 function loadFirebase(){
@@ -325,10 +386,10 @@ function loadFirebase(){
     return {appM,authM,fs,app,auth:newAuth(authM,app),store:fs.getFirestore(app)};
   })();
   fbPromise=p;
-  p.catch(()=>{if(fbPromise===p)fbPromise=null;});   // allow a retry after a failure
+  p.catch(()=>{if(fbPromise===p)fbPromise=null;});
   return p;
 }
-async function secondaryAuth(){   // only used to create teacher accounts without signing the admin out
+async function secondaryAuth(){
   const f=await loadFirebase();
   let app2;
   try{app2=f.appM.getApp('secondary');}catch(e){app2=f.appM.initializeApp(firebaseConfig,'secondary');}
@@ -352,19 +413,17 @@ function errText(e){
   return 'حدث خطأ غير متوقع'+(c?' ('+c+')':'');
 }
 
-/* ---- merging: lets several teachers edit the same class/day without overwriting each other ----
-   base = what I last loaded/saved, local = my copy now, server = what is online right now.   */
 function mergeRows(base,local,server){
   const L=new Map(local.map(r=>[r.id,r])),B=new Map(base.map(r=>[r.id,r]));
   const out=server.map(r=>({id:r.id,subject:r.subject,homework:r.homework}))
-                  .filter(r=>!(B.has(r.id)&&!L.has(r.id)));            // rows I deleted
+                  .filter(r=>!(B.has(r.id)&&!L.has(r.id)));
   local.forEach(l=>{
     const b=B.get(l.id),t=out.find(r=>r.id===l.id);
-    if(!b){if(!t)out.push({id:l.id,subject:l.subject,homework:l.homework});return;}   // row I added
-    const changed=['subject','homework'].filter(f=>l[f]!==b[f]);                       // fields I edited
+    if(!b){if(!t)out.push({id:l.id,subject:l.subject,homework:l.homework});return;}
+    const changed=['subject','homework'].filter(f=>l[f]!==b[f]);
     if(!changed.length)return;
     if(t)changed.forEach(f=>{t[f]=l[f];});
-    else out.push({id:l.id,subject:l.subject,homework:l.homework});   // someone deleted it while I edited: keep my work
+    else out.push({id:l.id,subject:l.subject,homework:l.homework});
   });
   return out;
 }
@@ -388,7 +447,7 @@ async function saveDay(key){
     tx.set(ref,{rows:merged,updatedAt:f.fs.serverTimestamp(),updatedBy:currentUser.u});
     return merged;
   });
-  const current=db.sched[key];                         // may have changed while saving
+  const current=db.sched[key];
   const next=mergeRows(snapshot,current,saved);
   db.sched[key]=next;baseSched[key]=clone(saved);loadedAt[key]=Date.now();
   if(onKey(key)&&JSON.stringify(next)!==JSON.stringify(current))renderSchedule();
@@ -415,7 +474,7 @@ async function doLogin(){
     const snap=await f.fs.getDoc(ref);
     let prof;
     if(snap.exists())prof=snap.data();
-    else if(u===ADMIN_USER){                       // very first admin login: create the admin profile
+    else if(u===ADMIN_USER){
       prof={u:ADMIN_USER,name:'المدير العام',role:'super',active:true};
       await f.fs.setDoc(ref,prof);
     }else{
@@ -497,7 +556,7 @@ function scheduleHead(g,s){
 }
 function needsLoad(key){
   if(!db.sched[key])return true;
-  return !isDirty(key)&&Date.now()-(loadedAt[key]||0)>FRESH_MS;   // never overwrite unsaved edits
+  return !isDirty(key)&&Date.now()-(loadedAt[key]||0)>FRESH_MS;
 }
 function showDay(key,g,s){
   main.innerHTML=scheduleHead(g,s)+`<p class="page-sub">جاري تحميل الواجبات...</p>`;
@@ -519,16 +578,17 @@ function renderSchedule(){
 
   let h=scheduleHead(g,s);
 
-  h+=`<table>
-    <thead>
-      <tr>
-        <th style="width:70px">الحصة</th>
-        <th style="width:200px">المادة</th>
-        <th>الواجب اليومي</th>
-        ${canEdit?`<th style="width:75px">حذف</th>`:''}
-      </tr>
-    </thead>
-    <tbody>`;
+  h+=`<div class="table-wrap sched-wrap">
+    <table class="sched">
+      <thead>
+        <tr>
+          <th style="width:60px">الحصة</th>
+          <th style="width:160px">المادة</th>
+          <th>الواجب اليومي</th>
+          ${canEdit?`<th style="width:70px">حذف</th>`:''}
+        </tr>
+      </thead>
+      <tbody>`;
 
   if(rows.length===0){
     h+=`<tr><td colspan="${canEdit?4:3}" style="padding:26px;color:#8596a6">لا توجد مواد مضافة لهذا اليوم. يمكنك إضافة مادة جديدة بالزر أدناه.</td></tr>`;
@@ -537,10 +597,10 @@ function renderSchedule(){
       h+=`<tr>
         <td><span class="num-badge">${i+1}</span></td>
         <td>
-          ${canEdit?`<input class="subject-input" value="${esc(r.subject)}" placeholder="اسم المادة" onchange="updateRow('${key}',${i},'subject',this.value)">`:`<b>${esc(r.subject)}</b>`}
+          ${canEdit?`<input class="subject-input" value="${esc(r.subject)}" placeholder="اسم المادة" oninput="updateRow('${key}',${i},'subject',this.value)">`:`<b>${esc(r.subject)}</b>`}
         </td>
         <td>
-          ${canEdit?`<textarea class="hw-input" rows="2" placeholder="اكتب تفاصيل الواجب اليومي هنا..." onchange="updateRow('${key}',${i},'homework',this.value)">${esc(r.homework)}</textarea>`:
+          ${canEdit?`<textarea class="hw-input" rows="2" placeholder="اكتب تفاصيل الواجب اليومي هنا..." oninput="updateRow('${key}',${i},'homework',this.value);grow(this)">${esc(r.homework)}</textarea>`:
           `<div class="hw-static">${esc(r.homework)||'<span style="color:#a8b6c4">لا يوجد واجب</span>'}</div>`}
         </td>
         ${canEdit?`<td><button class="btn-del" title="حذف المادة" onclick="deleteSubject('${key}',${i})">🗑️</button></td>`:''}
@@ -548,19 +608,21 @@ function renderSchedule(){
     });
   }
 
-  h+=`</tbody></table>`;
+  h+=`</tbody></table></div>`;
 
   if(canEdit){
     h+=`
     <div class="table-controls">
       <button class="btn-secondary" onclick="addSubject('${key}')">➕ إضافة مادة</button>
-      <button class="btn-main" style="width:auto;padding:10px 36px" onclick="saveAll()">💾 حفظ الواجبات</button>
+      <button class="btn-main" style="width:auto;padding:10px 32px" onclick="saveAll()">💾 حفظ الواجبات</button>
     </div>
     <div class="saved-msg" id="savedMsg"></div>`;
   }
 
   main.innerHTML=h;
+  document.querySelectorAll('.hw-input').forEach(grow);
 }
+function grow(t){t.style.height='auto';t.style.height=Math.max(60,t.scrollHeight+2)+'px';}
 
 function updateRow(key,i,field,val){
   if(db.sched[key]&&db.sched[key][i]){
@@ -597,7 +659,7 @@ async function deleteSubject(key,i){
 
 async function saveAll(){
   let ok=true;
-  for(const k of Object.keys(db.sched).filter(isDirty)){      // this day + any day edited earlier in this visit
+  for(const k of Object.keys(db.sched).filter(isDirty)){
     if(!(await trySave(k)))ok=false;
   }
   if(ok)showSavedMsg('✅ تم حفظ التغييرات والواجبات بنجاح',false);
@@ -632,7 +694,9 @@ function renderAdmin(){
     </div><div class="err" id="addErr"></div>`;
   }
   h+=`</div><div class="panel"><h3>👥 المستخدمون</h3>
-  <table class="admin-table"><tr><th>الاسم</th><th>اسم المستخدم</th><th>الدور</th><th>الحالة</th><th>إجراءات</th></tr>`;
+  <div class="table-wrap">
+    <table class="admin-table">
+      <tr><th>الاسم</th><th>اسم المستخدم</th><th>الدور</th><th>الحالة</th><th>إجراءات</th></tr>`;
   db.users.forEach((u,i)=>{
     h+=`<tr>
       <td>${esc(u.name)}</td><td>${esc(u.u)}</td>
@@ -643,7 +707,7 @@ function renderAdmin(){
         <button class="btn-red btn-sm" onclick="delUser(${i})">حذف</button>`}</td>
     </tr>`;
   });
-  h+=`</table></div>
+  h+=`</table></div></div>
   <div class="panel"><h3>🔑 تغيير كلمة مرور المدير العام</h3>
     <div class="form-row">
       <input id="np1" type="password" placeholder="كلمة المرور الجديدة">
@@ -707,8 +771,7 @@ async function changePass(){
     m.textContent=errText(e);
   }
 }
-loadFirebase().catch(e=>console.warn('Firebase:',e&&e.message));   // start downloading Firebase in the background
-
+loadFirebase().catch(e=>console.warn('Firebase:',e&&e.message));
 </script>
 </body>
 </html>
